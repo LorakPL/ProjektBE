@@ -1,0 +1,7 @@
+[18-Oct-2017 22:54:24 Poland] PHP Fatal error:  Maximum execution time of 20 seconds exceeded in /www/artur_www/www/projekt_BE/classes/ImageManager.php on line 534
+[18-Oct-2017 23:01:19 Poland] PHP Fatal error:  Maximum execution time of 20 seconds exceeded in /www/artur_www/www/projekt_BE/classes/db/DbPDO.php on line 128
+[18-Oct-2017 23:07:00 Poland] PHP Fatal error:  Maximum execution time of 20 seconds exceeded in /www/artur_www/www/projekt_BE/classes/ImageManager.php on line 293
+[19-Oct-2017 15:16:41 Poland] PHP Fatal error:  Maximum execution time of 20 seconds exceeded in /www/artur_www/www/projekt_BE/classes/ImageManager.php on line 534
+[21-Oct-2017 15:21:05 Poland] PHP Fatal error:  Maximum execution time of 40 seconds exceeded in /www/artur_www/www/projekt_BE/classes/ImageManager.php on line 252
+[22-Oct-2017 18:34:06 Poland] PHP Fatal error:  Maximum execution time of 60 seconds exceeded in /www/artur_www/www/projekt_BE/classes/ImageManager.php on line 534
+[22-Oct-2017 18:52:24 Poland] PHP Fatal error:  Maximum execution time of 60 seconds exceeded in /www/artur_www/www/projekt_BE/classes/ImageManager.php on line 260

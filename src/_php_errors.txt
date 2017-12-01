@@ -1,0 +1,9 @@
+[05-Oct-2017 16:21:44 Europe/Warsaw] PHP Warning:  chmod(): No such file or directory in /www/artur_www/www/projekt_BE/deleteme.8bwaFu.php on line 19
+[05-Oct-2017 14:22:20 UTC] PHP Notice:  Undefined variable: id_lang in /www/artur_www/www/projekt_BE/classes/LocalizationPack.php on line 77
+[05-Oct-2017 14:23:32 UTC] PHP Notice:  Undefined variable: id_lang in /www/artur_www/www/projekt_BE/classes/LocalizationPack.php on line 77
+[05-Oct-2017 14:25:33 UTC] PHP Notice:  Undefined variable: id_lang in /www/artur_www/www/projekt_BE/classes/LocalizationPack.php on line 77
+[05-Oct-2017 14:26:38 UTC] PHP Notice:  Undefined variable: id_lang in /www/artur_www/www/projekt_BE/classes/LocalizationPack.php on line 77
+[02-Nov-2017 16:59:32 Poland] PHP Parse error:  syntax error, unexpected T_STRING in /www/artur_www/www/projekt_BE/classes/pdf/HTMLTemplateInvoice.php on line 67
+[02-Nov-2017 23:35:33 Poland] PHP Parse error:  syntax error, unexpected T_VARIABLE in /www/artur_www/www/projekt_BE/translations/pl/fields.php on line 7
+[03-Nov-2017 16:25:21 Poland] PHP Notice:  Undefined index: account_error in /www/artur_www/www/projekt_BE/cache/smarty/compile/13/77/22/137722ca0ba0068493be894743a1ebfe21336bc9.file.authentication.tpl.php on line 101
+[03-Nov-2017 16:25:21 Poland] PHP Notice:  Trying to get property of non-object in /www/artur_www/www/projekt_BE/cache/smarty/compile/13/77/22/137722ca0ba0068493be894743a1ebfe21336bc9.file.authentication.tpl.php on line 101

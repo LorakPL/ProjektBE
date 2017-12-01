@@ -1,0 +1,2 @@
+*ERROR* 	2017/10/29 - 17:01:01: Something is wrong in your syntax obok '' w linii 1<br /><br /><pre>UPDATE ps_order_state SET `deleted` = 1 WHERE id_order_state = </pre> at line 765 in file classes/db/Db.php
+*ERROR* 	2017/10/29 - 17:01:55: Something is wrong in your syntax obok '' w linii 1<br /><br /><pre>UPDATE ps_order_state SET `deleted` = 1 WHERE id_order_state = </pre> at line 765 in file classes/db/Db.php
