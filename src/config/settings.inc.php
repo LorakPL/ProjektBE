@@ -7,10 +7,10 @@ define('_DB_PREFIX_', 'ps_');
 define('_MYSQL_ENGINE_', 'InnoDB');
 define('_PS_CACHING_SYSTEM_', 'CacheMemcache');
 define('_PS_CACHE_ENABLED_', '0');
-define('_COOKIE_KEY_', 'Ms3u9Cb2EXkBOWcP4h6PE6QnMVGDif1tsqAMK8mQhUZACGAuBUcCaGke');
-define('_COOKIE_IV_', 'OSajVy90');
-define('_PS_CREATION_DATE_', '2017-11-27');
+define('_COOKIE_KEY_', 'bgwRdTdtrqYH345QWt9tXLGDcOwNWnOR2bUTsC9c7WDzZSpLsdu99toz');
+define('_COOKIE_IV_', '7uVYmotd');
+define('_PS_CREATION_DATE_', '2017-10-05');
 if (!defined('_PS_VERSION_'))
 	define('_PS_VERSION_', '1.6.1.0');
-define('_RIJNDAEL_KEY_', 'GCKZfvyNL6DNwNUnEJnZ6024mi0uD2dG');
-define('_RIJNDAEL_IV_', 'NHDpyPTYlDlWMopBVJANyA==');
+define('_RIJNDAEL_KEY_', '4JgIILrHqu0JTm8DXJRjiGDvPTbieYM3');
+define('_RIJNDAEL_IV_', 'UhCijBMYrj/IEtnwdsScEA==');
