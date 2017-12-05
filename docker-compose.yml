@@ -4,7 +4,7 @@ services:
   prestashop:
     build: ./docker/prestashop
     ports:
-      - 9090:80
+      - 80:80
     links:
       - mariadb:mariadb
     depends_on:
