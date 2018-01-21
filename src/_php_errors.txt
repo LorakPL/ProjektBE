@@ -7,3 +7,5 @@
 [02-Nov-2017 23:35:33 Poland] PHP Parse error:  syntax error, unexpected T_VARIABLE in /www/artur_www/www/projekt_BE/translations/pl/fields.php on line 7
 [03-Nov-2017 16:25:21 Poland] PHP Notice:  Undefined index: account_error in /www/artur_www/www/projekt_BE/cache/smarty/compile/13/77/22/137722ca0ba0068493be894743a1ebfe21336bc9.file.authentication.tpl.php on line 101
 [03-Nov-2017 16:25:21 Poland] PHP Notice:  Trying to get property of non-object in /www/artur_www/www/projekt_BE/cache/smarty/compile/13/77/22/137722ca0ba0068493be894743a1ebfe21336bc9.file.authentication.tpl.php on line 101
+[16-Jan-2018 01:18:31 Poland] PHP Fatal error:  Uncaught  --> Smarty: unable to write file /www/artur_www/www/projekt_BE/cache/smarty/cache/blockbanner/3/3/2/14/44/ff/66/wrt5a5d44d7078797_24226367 <-- 
+  thrown in /www/artur_www/www/projekt_BE/tools/smarty/sysplugins/smarty_internal_write_file.php on line 46

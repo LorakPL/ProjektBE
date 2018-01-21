@@ -7249,8 +7249,7 @@ div.star a:hover {
     .footer-container #footer h4 {
       font: 600 18px/22px "Open Sans", sans-serif;
       color: #fff;
-      margin: 0 0 13px 0;
-      cursor: pointer; }
+      margin: 0 0 13px 0; }
       @media (max-width: 767px) {
         .footer-container #footer h4 {
           position: relative;

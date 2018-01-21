@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 2007-2015 PrestaShop
  *
  * NOTICE OF LICENSE
@@ -76,23 +76,26 @@ var GoogleAnalyticEnhancedECommerce = {
 	addProductDetailView: function(Product) {
 		this.add(Product);
 		ga('ec:setAction', 'detail');
-		ga('send', 'event', 'UX', 'detail', 'Product Detail View',{'nonInteraction': 1});
+		ga('send', 'event', 'Produkt', '(Szczegoly)', 'Szczegoly produktu '+Product['name'], Product['id'],{'nonInteraction': 1});
 	},
 
 	addToCart: function(Product) {
 		this.add(Product);
-		ga('ec:setAction', 'add');
-		ga('send', 'event', 'UX', 'click', 'Add to Cart'); // Send data using an event.
+		ga('ec:setAction', 'add', {list: Product['list']});
+		ga('send', 'event', 'Koszyk', '(Dodanie)', 'Dodanie do koszyka produktu '+Product['name'], Product['id']); // Send data using an event.
+	},
+	
+	setGaAjaxComplete: function(func){
 	},
 
 	removeFromCart: function(Product) {
 		this.add(Product);
 		ga('ec:setAction', 'remove');
-		ga('send', 'event', 'UX', 'click', 'Remove From cart'); // Send data using an event.
+		ga('send', 'event', 'Koszyk', '(Usuniecie)', 'Usuniecie z koszyka produktu '+Product['name'], Product['id']); // Send data using an event.
 	},
 
 	addProductImpression: function(Product) {
-		ga('send', 'pageview'); // odkomentowane
+		//ga('send', 'pageview');
 	},
 
 	/**
@@ -105,7 +108,7 @@ var GoogleAnalyticEnhancedECommerce = {
 		ga('ec:setAction', 'refund', {
 			'id': Order.id // Transaction ID is only required field for full refund.
 		});
-		ga('send', 'event', 'Ecommerce', 'Refund', {'nonInteraction': 1});
+		ga('send', 'event', 'Transakcja', 'Zwrot', {'nonInteraction': 1});
 	},
 
 	refundByProduct: function(Order) {
@@ -117,7 +120,7 @@ var GoogleAnalyticEnhancedECommerce = {
 		ga('ec:setAction', 'refund', {
 			'id': Order.id, // Transaction ID is required for partial refund.
 		});
-		ga('send', 'event', 'Ecommerce', 'Refund', {'nonInteraction': 1});
+		ga('send', 'event', 'Transakcja', 'Zwrot', {'nonInteraction': 1});
 	},
 
 	addProductClick: function(Product) {
@@ -129,7 +132,7 @@ var GoogleAnalyticEnhancedECommerce = {
 				list: Product.list
 			});
 
-			ga('send', 'event', 'Product Quick View', 'click', Product.list, {
+			ga('send', 'event', 'Produkt', 'Wyswietlenie szczegolow', Product.list, {
 				'hitCallback': function() {
 					return !ga.loaded;
 				}
@@ -144,7 +147,7 @@ var GoogleAnalyticEnhancedECommerce = {
 			list: Product.list
 		});
 
-		ga('send', 'event', 'Product Click', 'click', Product.list, {
+		ga('send', 'event', 'Produkt', '(Click)', 'Klikniecie produktu '+Product['name'], {
 			'nonInteraction': 1,
 			'hitCallback': function() {
 				return !ga.loaded;
@@ -157,7 +160,7 @@ var GoogleAnalyticEnhancedECommerce = {
 
 		//this.add(Product);
 		ga('ec:setAction', 'purchase', Order);
-		ga('send', 'event','Transaction','purchase', {
+		ga('send', 'event','Transakcja','Zakup', {
 			'hitCallback': function() {
 				$.get(Order.url, {
 					orderid: Order.id,
@@ -171,8 +174,107 @@ var GoogleAnalyticEnhancedECommerce = {
 	addCheckout: function(Step) {
 		ga('ec:setAction', 'checkout', {
 			'step': Step
-			//'option':'Visa'
 		});
-		//ga('send', 'pageview'); // odkomentowane
+		ga('send', 'event', 'Transakcja', 'Podsumowanie '+ Step, '',{
+			hitCallback: function() {}
+		});
+	},
+	
+	registerProductClickActions:function(referralList){
+		$('li.ajax_block_product a.product_img_link').each(function(){
+				var element=$(this);
+				var title=element.attr('title');
+				var id=element.parent().parent().parent().find('a.ajax_add_to_cart_button').attr('data-id-product');
+				$('li.ajax_block_product a[href="'+element.attr('href')+'"][class!="add_to_compare"]').click(function(){
+					Product={'id':id,'name':title,'list':referralList};
+					GoogleAnalyticEnhancedECommerce.addProductClickByHttpReferal(Product);
+				});				
+			});
+	},
+
+	referralListName: '',
+	
+	registerGlobalActions: function(activeNewClicks, categoryName, controllerName){
+		
+		$('a.ajax_add_to_cart_button').each(function(){
+			var element=$(this);
+			element.click(function(){
+				
+				if(activeNewClicks==false)return;
+				if(GoogleAnalyticEnhancedECommerce.referralListName!='')
+					categoryName=GoogleAnalyticEnhancedECommerce.referralListName;
+				var id=element.attr('data-id-product');
+				var name=element.parent().parent().find('a.product-name').attr('title');
+				GoogleAnalyticEnhancedECommerce.addToCart({'id':id,'name':name, 'quantity':1, 'list':categoryName});
+			});
+		});
+		
+		if(activeNewClicks==false)return;
+		
+		if(categoryName!=''){
+			var referralList="Kategoria "+categoryName;
+			GoogleAnalyticEnhancedECommerce.registerProductClickActions(referralList);
+			categoryName="Kategoria "+categoryName;
+		}		
+		
+	},	
+	
+	registerHomeActions: function(activeNewClicks){
+		GoogleAnalyticEnhancedECommerce.referralListName="Strona glowna";
+				
+		$('li.ajax_block_product a.product_img_link').each(function(){
+				var element=$(this);
+				var title=element.attr('title');
+				var id=element.parent().parent().parent().find('a.ajax_add_to_cart_button').attr('data-id-product');
+					Product={'id':id,'name':title,'list':referralList};
+					GoogleAnalyticEnhancedECommerce.add(Product,null, true);
+			});
+		
+	},
+	
+	registerCartActions:function(activeNewClicks){
+		if(activeNewClicks==false)return;
+		var prevUpQuantity=upQuantity;
+		upQuantity=function(id, qty){
+			var prevAjax=$('input[name="quantity_'+id+'"]').val();
+			prevUpQuantity(id, qty);
+			
+			setTimeout(function(){
+			var quantity=1;
+			if(qty===undefined)
+				quantity=1;
+			else quantity=qty;
+			Product={'id':id.split('_')[0],'quantity':quantity, 'list':'Koszyk'}
+			
+			var afterAjax=$('input[name="quantity_'+id+'"]').val();
+			if(prevAjax==afterAjax)
+				GoogleAnalyticEnhancedECommerce.addToCart(Product);
+			},1000);
+			
+		}
+		var prevDownQuantity=downQuantity;
+		downQuantity=function(id, qty){
+			var prevAjax=$('input[name="quantity_'+id+'"]').val();
+			prevDownQuantity(id,qty);
+			
+			setTimeout(function(){
+			var quantity=1;
+			if(qty===undefined)
+				quantity=1;
+			else quantity=-qty;
+			Product={'id':id.split('_')[0],'quantity':quantity, 'list':'Koszyk'};
+			
+			var afterAjax=$('input[name="quantity_'+id+'"]').val();
+			if(prevAjax==afterAjax)
+				GoogleAnalyticEnhancedECommerce.removeFromCart(Product);
+			},1000);
+			
+		}
+		var prevDeleteProductFromSummary=deleteProductFromSummary;
+		deleteProductFromSummary=function(id){
+			Product={'id':id.split('_')[0],'quantity':$('input[name="quantity_'+id+'_hidden"]').val(), 'list':'Koszyk'};
+			GoogleAnalyticEnhancedECommerce.removeFromCart(Product);
+			prevDeleteProductFromSummary(id, null, true);
+		}
 	}
 };
